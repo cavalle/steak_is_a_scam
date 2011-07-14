@@ -1,0 +1,72 @@
+body, #preso {
+  background-color: black;
+  
+}
+
+/*#footer {
+  font-size: 40px;
+  line-height: 1.2em;
+  height: 3.6em;
+  top: -3.6em;
+}
+
+#slideInfo {
+  display:block;
+  float:left;
+  height: 3em;
+  margin-right: 30px;
+}
+
+#notesInfo {
+  margin-left: 0;
+}*/
+
+h1, h2 {
+  line-height: 1.2em;
+}
+
+.slide {
+  font-family: Futura;
+  color: white;
+}
+
+.slide {
+  background-color: black;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.no_uppercase {
+  text-transform: none;
+}
+
+.slide img {
+  width:auto;
+  height:100%;
+}
+
+.wide img {
+  height:auto;
+  width:100%;
+}
+
+.inlineimages img {
+  height: 2em;  
+  width: auto;
+  position: relative;
+  top: 0.5em;
+}
+
+.inlineimages h2 {
+  line-height: 2em;
+}
+
+.mosaic img {
+  height:169px;
+  margin: 5px;
+}
+
+.mosaic {
+  margin-top:90px !important;
+  text-align:center;
+}
