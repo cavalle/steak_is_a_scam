@@ -432,4 +432,4 @@ $(".mosaic").bind("showoff:show", function (event) {
 .notes And that's all. Thank you very much!
 
 # Thank you!
-### steak_is_a_scam.heroku.com
+### steak-is-a-scam.heroku.com
