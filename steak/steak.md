@@ -5,13 +5,27 @@
 
 <script>
 $(function() {
+  
+  var notesWindow;
+  
+  $("body").keypress(function(event) {
+    console.log(event.which)
+    if(event.which == 110) {
+      notesWindow = window.open('', 'notes');
+      updateNote();
+    }
+  })
+  
   $(".slide").bind("showoff:show", function (event) {
-    notesWindow.document.open();
-    notesWindow.document.write($(this).find('.notes').html());
-    notesWindow.document.close();
+    if(notesWindow) updateNote();
   });
   
-  var notesWindow = window.open('', 'notes');
+  function updateNote() {
+    notesWindow.document.open();
+    notesWindow.document.write($(".slide:visible").find('.notes').html());
+    notesWindow.document.close();
+  }
+
 })
 </script>
 
@@ -30,7 +44,7 @@ $(function() {
 # _ka-bah-yeah_
 
 <!SLIDE center karateka>
-.notes This is my avatar in github, and this is the original picture for that avatar…
+.notes This is my avatar in github, and this…
 
 <div class='crop'>
   <img src='/image/steak/karateka.jpg'/>
@@ -55,7 +69,7 @@ $(".karateka").bind("showoff:show", function (event) {
 </script>
 
 <!SLIDE center karateka2>
-.notes But it is for another talk that I tell the story behind this photo. What I would like to talk you tonight is about a gem I'm author of…
+.notes is the original picture. But what I would like to talk you tonight is about a gem I'm author of…
 
 <div class='crop'>
   <img src='/image/steak/karateka.jpg'/>
@@ -102,7 +116,7 @@ $(".karateka2").bind("showoff:show", function (event) {
 # Why?
 
 <!SLIDE center>
-.notes ashamed because, deep inside, I knew that Yehuda Katz…
+.notes ashamed because, I secretly knew that Yehuda Katz…
 
 # Ashamed
 ## (sort of)
@@ -138,29 +152,9 @@ $(".karateka2").bind("showoff:show", function (event) {
 # I'm a liar
 
 <!SLIDE wide center>
-.notes Yehuda, because in Software Development… 
+.notes Yehuda, because… 
 
 ![yehuda1](yehuda1.jpg)
-
-<!SLIDE>
-.notes there are two absolutes truths:
-
-# 2 Absolute Truths
-
-<!SLIDE>
-.notes The first one is…
-
-# 1.
-
-<!SLIDE>
-.notes Everything is about trade-offs
-
-## Everything is about trade-offs
-
-<!SLIDE>
-.notes The second one is…
-
-# 2.
 
 <!SLIDE inlineimages>
 .notes Yehuda is always right
@@ -173,29 +167,23 @@ $(".karateka2").bind("showoff:show", function (event) {
 # »
 
 <!SLIDE>
-.notes One of my wishes has always been to be able to read a book every week. I've always envied people who can read…
+.notes One of my wishes has always been to be able to read a book every week. I'm a very bad reader, I got…
 
 # One book a week
-
-<!SLIDE>
-.notes fast and focused, because I'm just the opposite: I get…
-
-## Fast and focused
-## :)
 
 <!SLIDE>
 .notes distracted and lose concentration quite easily
 
 ## Distracted and concentration lost 
-## :(
 
 <!SLIDE>
 .notes So, no, reading one book each week is nearly impossible for me. However, at the beginning of this year…
 
 # Impossible!
+## :(
 
 <!SLIDE>
-.notes I had this crazy idea: ok, you cannot finish a book each week…
+.notes I had this crazy idea: ok, I cannot finish a book each week…
 
 # Crazy Idea
 
@@ -205,7 +193,7 @@ $(".karateka2").bind("showoff:show", function (event) {
 <h2>What about <em><u>starting</u></em> a new book every week?</h2>
 
 <!SLIDE>
-.notes That's something that I could do. Would it make any sense?
+.notes That's something I could do. Would it make any sense?
 
 # Yes we can
 
@@ -215,7 +203,7 @@ $(".karateka2").bind("showoff:show", function (event) {
 # ¿?
 
 <!SLIDE mosaic>
-.notes Six months later I can tell you, making the long story short, that the experiment is working quite well: Of course, I didn't finish most of the books I started, but I'm reading more than ever, I feel more motivated than ever to do so and I no longer feel guilty and get stuck when I lose interest in my current book.
+.notes Six months later I can tell you that the experiment is working quite well: Of course, I didn't finish most of the books I started, but I'm reading more than ever, I feel very motivated to do so and I no longer feel guilty and get stuck when I lose interest in my current book.
 
 ![book1](book1.jpg)
 ![book2](book2.jpg)
@@ -263,12 +251,12 @@ $(".mosaic").bind("showoff:show", function (event) {
 # »
 
 <!SLIDE center>
-.notes “All marketers are liars”, by Seth Godin. I suppose some of you have read it and most of you know
+.notes “All marketers are liars”
 
 ![liars](liars.jpg)
 
 <!SLIDE center>
-.notes the author. In this book Godin states that marketing is all about
+.notes by Seth Godin. In this book Godin states that marketing is all about
 
 ![godin](godin.jpg)
 
@@ -303,7 +291,7 @@ $(".mosaic").bind("showoff:show", function (event) {
 # Your brain fills the gaps
 
 <!SLIDE>
-.notes This is how we work, by telling ourselves lies all the time in order to understand the world. What marketers do, then, is taking advantage of this basic mechanism in order to make an idea spread…
+.notes This is how we work: we tell ourselves lies all the time in order to understand the world. What marketers do, then, is taking advantage of this basic mechanism in order to make an idea spread…
 
 ## Telling lies to understand the world
 
@@ -341,10 +329,10 @@ $(".mosaic").bind("showoff:show", function (event) {
 .notes I thought that RSpec and Webrat were probably all I needed for Acceptance testing. And I thought that that was an idea worth spreading
 
 ## The idea:
-## _RSpec + Webrat for Acceptance testing is cool_
+## _“RSpec + Webrat for Acceptance testing is cool”_
 
 <!SLIDE>
-.notes So as any marketer would do I started to tell a story
+.notes So, as any marketer would do, I started to tell a story
 
 # Tell the story
 
@@ -364,17 +352,17 @@ $(".mosaic").bind("showoff:show", function (event) {
 # Ruby Gem!
 
 <!SLIDE>
-.notes First, because that is what I do best, writting code, but the most important reason is that, as Godin explains in his book,
+.notes First, because that is what I do best, writting code, but the main reason is that, as Godin explains in his book,
 
 # I love coding
 
 <!SLIDE>
-.notes it is not only about telling stories
+.notes it's not only about telling stories
 
 ## Telling the story is not enough
 
 <!SLIDE>
-.notes but about living them.
+.notes it is about living them.
 
 <h2>You have to <u><em>live</em></u> the story</h2>
 
