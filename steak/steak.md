@@ -381,6 +381,8 @@ $(".mosaic").bind("showoff:show", function (event) {
   }).bind('showoff:next', stopVideo).bind('showoff:prev', stopVideo)
   
   function startVideo() {
+    if(!$('video')[0].readyState) return;
+    
     video.play();
     fastForward(5, 60);
     fastForward(8, 70);
@@ -390,6 +392,8 @@ $(".mosaic").bind("showoff:show", function (event) {
   }
   
   function stopVideo() {
+    if(!$('video')[0].readyState) return;
+    
    if(!video.paused) video.pause();
    timeouts.forEach(clearTimeout);
    video.currentTime = 10;
