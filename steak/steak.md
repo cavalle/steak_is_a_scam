@@ -6,25 +6,24 @@
 <script>
 $(function() {
   
-  var notesWindow;
-  
-  $("body").keypress(function(event) {
-    console.log(event.which)
-    if(event.which == 110) {
-      notesWindow = window.open('', 'notes');
-      updateNote();
-    }
-  })
-  
-  $(".slide").bind("showoff:show", function (event) {
-    if(notesWindow) updateNote();
-  });
-  
-  function updateNote() {
-    notesWindow.document.open();
-    notesWindow.document.write($(".slide:visible").find('.notes').html());
-    notesWindow.document.close();
-  }
+  // var notesWindow;
+  // 
+  // $("body").keypress(function(event) {
+  //   if(event.which == 110) {
+  //     notesWindow = window.open('', 'notes');
+  //     updateNote();
+  //   }
+  // })
+  // 
+  // $(".slide").bind("showoff:show", function (event) {
+  //   if(notesWindow) updateNote();
+  // });
+  // 
+  // function updateNote() {
+  //   notesWindow.document.open();
+  //   notesWindow.document.write($(".slide:visible").find('.notes').html());
+  //   notesWindow.document.close();
+  // }
 
 })
 </script>
@@ -85,7 +84,7 @@ $(".karateka2").bind("showoff:show", function (event) {
     margin: 'auto'
   }).animate({
     height: $(".karateka2").height(),
-    width:  '50%'
+    width:  '40%'
   }, 'slow');
       
   $('.crop').find('img').css({
@@ -144,7 +143,7 @@ $(".karateka2").bind("showoff:show", function (event) {
 <!SLIDE>
 .notes Yes, my friends, I confess it to all of you tonight,
 
-## A scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam
+## A scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam. a scam.
 
 <!SLIDE>
 .notes I'm a liar. You should have heard…
@@ -367,43 +366,51 @@ $(".mosaic").bind("showoff:show", function (event) {
 <h2>You have to <u><em>live</em></u> the story</h2>
 
 <!SLIDE center autoplay>
-.notes You may have seen this video. It is from a TED talk by Derek Shivers, titled "How to start a movement". Our hero here is a guy that had an idea: 'Dancing over the grass must be fun'. He could have tweeted about it or written a blog post. He could have started a discussion in Hacker News about how fun is to dance over the grass. But, instead of that, he opted to tell the story by living it. And he succeeds. He succeeds epicly. Why? Because one of the most powerful ways of selling an idea to others is by living the story you tell about it. And that's what I tried to do with Steak.
+.notes You may have seen this video. It is from a TED talk by Derek Shivers, titled "How to start a movement". Our hero here is a guy that had an idea: 'Dancing over the grass must be fun'. He could have tweeted about it or written a blog post. He could have started a discussion in Hacker News about how fun is to dance over the grass. But, instead of that, he opted to tell the story by living it. And he succeeds. He succeeds epicly. Why? Because one of the most powerful ways of selling an idea to others is by living the story you tell about it. And that's what I humbly tried to do with Steak.
 
-<video src='/image/steak/dancingguy.webm' width='100%' height='100%'></video>
+<video x-webkit-airplay='allow' src='http://o-o.preferred.fra02s03.v11.lscache1.c.youtube.com/videoplayback?sparams=id%2Cexpire%2Cip%2Cipbits%2Citag%2Cratebypass%2Coc%3AU0hQR1RTVl9FSkNOMF9MTVpB&fexp=903802&itag=18&ip=0.0.0.0&signature=CA7C4CA44BDDD7CAAA5ADFD5DEFD885D069D3290.A5955E0C57D09D093960DDB5656BB516FFC1C11C&sver=3&ratebypass=yes&expire=1312488000&key=yt1&ipbits=0&id=180f33edfedad8f9' width='100%' height='100%'></video>
 
 <script>
   var video = $('video')[0],
-      timeouts = [];
-  
-  $('.autoplay').bind("showoff:show", function (event) {
-    stopVideo();
-    startVideo();
-  }).bind('showoff:next', stopVideo).bind('showoff:prev', stopVideo)
-  
-  function startVideo() {
-    if(!$('video')[0].readyState) return;
+        timeouts = [];
     
-    video.play();
-    fastForward(5, 60);
-    fastForward(8, 70);
-    fastForward(14, 90);
-    fastForward(19, 120);
-    fastForward(22, 170);
-  }
-  
-  function stopVideo() {
-    if(!$('video')[0].readyState) return;
+    $('.autoplay').bind("showoff:show", function (event) {
+      if(!videoAvailable()) {
+        $('video').replaceWith('<a target="_new" href="http://www.youtube.com/watch?v=GA8z7f7a2Pk">http://www.youtube.com/watch?v=GA8z7f7a2Pk</a>');
+        return;
+      }
+      stopVideo();
+      startVideo();
+    }).bind('showoff:next', stopVideo).bind('showoff:prev', stopVideo);
     
-   if(!video.paused) video.pause();
-   timeouts.forEach(clearTimeout);
-   video.currentTime = 10;
-  }
-  
-  function fastForward(when, to) {
-    timeouts.push(setTimeout(function() {
-      video.currentTime = to;
-    }, when * 1000))
-  }
+    function videoAvailable() {
+      return !(!$('video')[0] || !$('video')[0].readyState);
+    }
+    
+    function startVideo() {
+      if(!videoAvailable()) return;
+      
+      video.play();
+      fastForward(5, 60);
+      fastForward(8, 70);
+      fastForward(14, 90);
+      fastForward(19, 120);
+      fastForward(22, 170);
+    }
+    
+    function stopVideo() {
+     if(!videoAvailable()) return;
+      
+     if(!video.paused) video.pause();
+     timeouts.forEach(clearTimeout);
+     video.currentTime = 10;
+    }
+    
+    function fastForward(when, to) {
+      timeouts.push(setTimeout(function() {
+        video.currentTime = to;
+      }, when * 1000))
+    }
 </script>
 
 

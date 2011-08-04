@@ -1,6 +1,13 @@
-body, #preso {
+body {
+  background-color: #333;
+}
+
+#preso, .slide {
   background-color: black;
-  
+  height:600px;
+}
+.center {
+  height: 600px !important;
 }
 
 /*#footer {
@@ -67,6 +74,31 @@ h1, h2 {
 }
 
 .mosaic {
-  margin-top:90px !important;
   text-align:center;
+}
+
+.autoplay a {
+  text-transform:none;
+  color: white;
+  font-weight: normal;
+}
+
+#notesInfo {
+  display:block;
+}
+
+#footer span {
+  display:block;
+  float: left;
+  max-width: 88%;
+}
+
+#footer {
+  overflow: visible;
+  height:auto;
+  width:90%;
+  left:5%;
+position:absolute;
+bottom:0;
+top:auto;
 }
